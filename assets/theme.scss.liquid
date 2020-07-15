@@ -4874,15 +4874,17 @@ $link-color: #F5F7F2;
   flex-direction: column;
   padding:1rem;
   border-radius: 0.3rem;
-  width: 30rem;
-  height: 20rem;
+  width: 26rem;
+  height: 16rem;
   // background-color: #6C97B8;
   background-color: #1a0532;
   color: white;
-  position: absolute;
+  position: fixed;
   z-index: 3;
-  top:4rem;
-  left: 30rem;
+  left:50%;
+  margin-left: -13rem;
+  top: 50%;
+  margin-top: -8rem;
   .close-btn{
     align-self: flex-end;
   }
@@ -4890,10 +4892,24 @@ $link-color: #F5F7F2;
     align-self: center;
   }
   .popup-detail{
-    color: $colorTextBody;
-    align-self: start;
+    color: white;
+    text-align: center;
+    align-self: center;
+    .submit-btn{
+      color: white;
+      text-transform: uppercase;
+      background-color: $colorBtnPrimary;
+      height: 2.2rem;
+      cursor: pointer;
+      border-bottom-right-radius: 2rem;
+    }
+    #promo-code{
+      color: white;
+      text-transform: uppercase;
+    }
   }
   .popup-action{
+    cursor: pointer;
     width:7rem;
     height: 2rem;
     padding-top:0.2rem;
@@ -4902,7 +4918,7 @@ $link-color: #F5F7F2;
     text-align: center;
     align-self: center;
     bottom: auto;
-    top: 17rem;
-    position: absolute;
+    top: 2rem;
+    position: relative;
   }
 }

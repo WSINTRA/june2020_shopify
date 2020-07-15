@@ -1,33 +1,112 @@
-<div id="popup-1"  class="popup-div">
-    <div id="close-popup" onclick="onCloseEvent()" class="close-btn">
-        <span class="icon icon-x" aria-hidden="true"></span></div>
-    <div class="popup-title">
-        FREE SHIPPING
+{% if settings.popup_active == true %}
+<div id="popup-1" class="popup-div" >
+  <div id="close-popup" onclick="onCloseEvent()" class="close-btn">
+    <span class="icon icon-x" aria-hidden="true"></span>
+  </div>
+  <div class="popup-title">
+    {{ settings.popup_title }}
+  </div>
+  <div class="popup-detail">
+    {{settings.popup_details}}
+    {% form 'customer' %}
+    {{ form.errors | default_errors }}
+    {% if form.posted_successfully? %}
+      <div class="newsletter--form">
+        <div class="note form-success">{{ 'general.newsletter_form.newsletter_confirmation' | t }}
+        <div id="promo-code">
+           Your promo code is : {{settings.popup_promo_code}}
+        </div>
     </div>
-    <div class="popup-detail">
-        SOME COOL INFO
-    </div>
-    <div onmousedown="onActionDownEvent()" onmouseup="onActionUpEvent()" id="action-event"class="popup-action">SOME ACTION</div>
+      </div>
+    {% else %}
+      <label for="Email" class="newsletter__label hidden-label">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="newsletter--form">
+        <div class="input-group">
+          <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_placeholder' | t }}" name="contact[email]" id="Email" class="input-group-field newsletter__input" autocorrect="off" autocapitalize="off">
+          <span id="action-event" class="input-group-btn">
+            <button id="Subscribe" type="submit"
+            onmousedown="onActionDownEvent()"
+            onmouseup="onActionUpEvent()"
+            onmouseenter="onActionHover()"
+            onmouseleave="onActionLeave()"
+            
+              class="submit-btn"
+              aria-label="{{ 'general.newsletter_form.submit' | t }}">
+              <span class="newsletter__submit-text--large"> {{settings.popup_button_text}}</span>
+              <span class="newsletter__submit-text--small">
+                <span class="icon icon-arrow-right" aria-hidden="true"></span>
+              </span>
+            </button>
+          </span>
+        </div>
+      </div>
+    {% endif %}
+  {% endform %}
+    
+  </div>
 </div>
 <script>
-    let actionEvent = document.getElementById('action-event')
-    let closeBtn = document.getElementById('close-popup')
-    let popup = document.getElementById('popup-1')
-    const onActionUpEvent=()=>{
-        actionEvent.style.opacity = 1
-    }
-    const onActionDownEvent=()=>{
-        console.log("Clicker")
-        actionEvent.style.opacity = 0.5
-    }
-    const onCloseEvent=()=>{
+  let mousePosition;
+  let offset = [0, 0];
+  let div;
+  let isDown = false;
+  let promoCode = document.getElementById("promo-code")
+  let actionEvent = document.getElementById("action-event");
+  let closeBtn = document.getElementById("close-popup");
+  let popup = document.getElementById("popup-1");
+  const onActionLeave = () => {
+      actionEvent.style.opacity = 1
+  }
+  const onActionHover = () => {
+      actionEvent.style.opacity = 0.9
+  }
+  const onActionUpEvent = () => {
+    actionEvent.style.opacity = 1;
+  };
+  const onActionDownEvent = () => {
+    promoCode.style.display = "flex";
+    actionEvent.style.opacity = 0.5;
+  };
+  const onCloseEvent = () => {
+    localStorage.setItem("seenPop", true);
+    popup.style.display = "none";
+  };
+  if (localStorage.getItem("seenPop") === "true") {
+    popup.style.display = "none";
+  }
+  popup.addEventListener(
+    "mousedown",
+    function (e) {
+      isDown = true;
+      offset = [div.offsetLeft - e.clientX, div.offsetTop - e.clientY];
+    },
+    true
+  );
 
-        localStorage.setItem("seenPop", true)
-        popup.style.display = "none";
-    }
-    if(localStorage.getItem("seenPop")==="true"){
-        console.log("Previously seen")
-        popup.style.display = "none";
-    }
-    // closeBtn.addEventListener("click", onClickEvent() )
+  document.addEventListener(
+    "mouseup",
+    function () {
+      isDown = false;
+    },
+    true
+  );
+
+  document.addEventListener(
+    "mousemove",
+    function (event) {
+      event.preventDefault();
+      if (isDown) {
+        mousePosition = {
+          x: event.clientX,
+          y: event.clientY,
+        };
+        popup.style.left = mousePosition.x + offset[0] + "px";
+        popup.style.top = mousePosition.y + offset[1] + "px";
+      }
+    },
+    true
+  );
+  // closeBtn.addEventListener("click", onClickEvent() )
 </script>
+{% endif %}
