@@ -1,6 +1,556 @@
 {
-  "current": "Default",
+  "current": {
+    "color_body_bg": "#ffffff",
+    "color_headings": "#333333",
+    "color_body_text": "#565656",
+    "color_borders": "#1e1420",
+    "color_button_text": "#f5f7f2",
+    "color_primary": "#2f72c3",
+    "color_secondary": "#6c97b8",
+    "color_product_background": "rgba(0,0,0,0)",
+    "color_sale_tag": "#b43f5a",
+    "color_input": "#f5f7f2",
+    "color_newsletter": "#ecf8e6",
+    "color_drawer_background": "rgba(0,0,0,0)",
+    "color_drawer_text": "#323232",
+    "color_drawer_border": "#bbbbbb",
+    "color_drawer_button": "#6c97b8",
+    "color_drawer_button_text": "#333333",
+    "type_header_family": "agmena_n4",
+    "type_header_base_size": "34px",
+    "type_header_border_thickness": "1px",
+    "type_accent_family": "agmena_n4",
+    "type_accent_transform": true,
+    "type_accent_spacing": true,
+    "type_accent_subheadings": true,
+    "type_base_family": "arapey_n4",
+    "type_base_size": "17px",
+    "type_base_italize_titles": false,
+    "cart_type": "drawer",
+    "cart_notes_enable": true,
+    "share_image": "",
+    "social_facebook_link": "",
+    "social_twitter_link": "",
+    "social_pinterest_link": "",
+    "social_instagram_link": "",
+    "social_snapchat_link": "",
+    "social_google_plus_link": "",
+    "social_tumblr_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "social_fancy_link": "",
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "favicon": "shopify:\/\/shop_images\/wave.png",
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/wavev2.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "small",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#ffffff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fff4f6",
+    "checkout_heading_font": "Lato",
+    "checkout_body_font": "Open Sans",
+    "checkout_accent_color": "#7737bd",
+    "checkout_button_color": "#7737bd",
+    "checkout_error_color": "#f01130",
+    "checkout_banner_background_color": "#fff",
+    "checkout_call_to_action_color": "#a26b25",
+    "checkout_use_header_image": false,
+    "collection_products_grid": "collage",
+    "customer_layout": "customer_area",
+    "favicon_enable": false,
+    "product_vendor_enable": false,
+    "social_sharing_style": "clean",
+    "sections": {
+      "slideshow": {
+        "type": "slideshow",
+        "blocks": {
+          "1591903243522": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/beach.jpg",
+              "image_position": "center center",
+              "image_overlay": true,
+              "image_overlay_opacity": 25,
+              "text_alignment": "center",
+              "slide_heading": "Beach & Surf Jewelry",
+              "slide_subheading": "Finest quality",
+              "button_label": "View All Collections",
+              "button_link": "shopify:\/\/collections",
+              "slide_text_color": "#ffffff",
+              "slide_button_label_color": "#003b34",
+              "slide_button_background_color": "#84d1b2"
+            }
+          },
+          "1495823280244": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/ocean-waves-crashing.jpg",
+              "image_position": "center bottom",
+              "image_overlay": true,
+              "image_overlay_opacity": 15,
+              "text_alignment": "center",
+              "slide_heading": "Beach Jewelry",
+              "slide_subheading": "Sustainably made",
+              "button_label": "View All Collections",
+              "button_link": "shopify:\/\/collections",
+              "slide_text_color": "#ffffff",
+              "slide_button_label_color": "#003b34",
+              "slide_button_background_color": "#84d1b2"
+            }
+          },
+          "1591903366650": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/hiking-above-clouds-at-sunset_4472x_a21aa8eb-dd9d-4e87-be0d-fdbc73f13749.jpg",
+              "image_position": "center bottom",
+              "image_overlay": true,
+              "image_overlay_opacity": 15,
+              "text_alignment": "center",
+              "slide_heading": "Fashion and Jewelry",
+              "slide_subheading": "Hand Made With Love",
+              "button_label": "View All Collections",
+              "button_link": "shopify:\/\/collections",
+              "slide_text_color": "#ffffff",
+              "slide_button_label_color": "#003b34",
+              "slide_button_background_color": "#84d1b2"
+            }
+          }
+        },
+        "block_order": [
+          "1591903243522",
+          "1495823280244",
+          "1591903366650"
+        ],
+        "settings": {
+          "home_hero_height": "full",
+          "hero_home_auto": true,
+          "home_hero_auto_speed": 7
+        }
+      },
+      "newsletter": {
+        "type": "newsletter",
+        "settings": {
+          "heading": "Subscribe to our newsletter",
+          "subheading": "<p>Promotions, new products and updates, directly to your inbox. Sign up here for the latest!<\/p>"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": "shopify:\/\/shop_images\/wave.png",
+          "logo_max_width": 230,
+          "header_color": "#333333",
+          "transparent_header_enable": true,
+          "transparent_logo": "",
+          "transparent_header_color": "#333333",
+          "search": "modal",
+          "main_menu_link_list": "main-menu",
+          "drawer_bottom_link_list": "footer",
+          "drawer_search_enable": true,
+          "show_announcement": true,
+          "home_page_only": true,
+          "text": "All your orders are being packed & shipped as normal",
+          "link": "",
+          "color_bg": "#1a0532",
+          "color_text": "#ffffff"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "show_payment_icons": true,
+          "show_locale_selector": true,
+          "show_currency_selector": false,
+          "footer_link_list": "footer"
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "show_collection_image": false,
+          "collection_sort_enable": true,
+          "collection_tags_enable": true,
+          "collection_products_grid": "grid",
+          "product_vendor_enable": false
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "product_vendor_enable": false,
+          "social_sharing_products": true,
+          "quantity_enabled": false,
+          "product_selector": "radio",
+          "enable_payment_button": true,
+          "add_to_cart_button_size": "small",
+          "media_layout": "stacked",
+          "enable_image_zoom": false,
+          "enable_video_looping": false
+        }
+      },
+      "product-recommendations": {
+        "type": "product-recommendations",
+        "settings": {
+          "show_product_recommendations": true,
+          "heading": "You may also like"
+        }
+      },
+      "1592605316831": {
+        "type": "advanced-content",
+        "blocks": {
+          "1592605316831-0": {
+            "type": "html",
+            "settings": {
+              "code": "<div style=\"text-align:center;\">\n<h2>About Us<\/h2>BlueRica is a beach, surf and sustainable fashion jewelry company.<br>We are a small group of dreamers, paddle surfers, musicians and nature lovers.<br>Based in the USA, we created BlueRica to share our designs with people who value nature and self-expression as much as we do.<br>All of our pieces are handmade with sustainable practices and lots of love.<\/div><img class=\"hero__image hero__image--1591903243522 lazyload fade-in lazypreload\" data-src=\"\/\/cdn.shopify.com\/s\/files\/1\/0093\/7544\/9139\/files\/waves-crashing-on-beach_{width}x.jpg?v=1591893402\" data-widths=\"[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048, 4472]\" data-aspectratio=\"0.5\" data-sizes=\"auto\" data-parent-fit=\"cover\" data-hero-image=\"\" alt=\"Waves crashing\" style=\"object-position: center center\">",
+              "width": "100%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1592605316831-0"
+        ],
+        "settings": {}
+      },
+      "list-collections-template": {
+        "type": "list-collections-template",
+        "settings": {
+          "display_type": "all",
+          "sort": "products_high"
+        }
+      },
+      "1593034603095": {
+        "type": "featured-collections",
+        "blocks": {
+          "1593034742594": {
+            "type": "collection",
+            "settings": {
+              "collection": "hemp"
+            }
+          },
+          "1593034739634": {
+            "type": "collection",
+            "settings": {
+              "collection": "shark-teeth"
+            }
+          },
+          "1593034603095-1": {
+            "type": "collection",
+            "settings": {
+              "collection": "shell"
+            }
+          },
+          "1593547123777": {
+            "type": "collection",
+            "settings": {
+              "collection": "popular-symbols"
+            }
+          }
+        },
+        "block_order": [
+          "1593034742594",
+          "1593034739634",
+          "1593034603095-1",
+          "1593547123777"
+        ],
+        "settings": {
+          "title": "Featured Collections"
+        }
+      }
+    },
+    "content_for_index": [
+      "slideshow",
+      "1593034603095",
+      "1592605316831",
+      "newsletter"
+    ]
+  },
   "presets": {
-    "Default": { }
+    "Classic": {
+      "checkout_accent_color": "#a26b25",
+      "checkout_button_color": "#000000",
+      "checkout_error_color": "e32c2b",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "show_announcement": true
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "slide",
+              "settings": {}
+            },
+            "slideshow-1": {
+              "type": "slide",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "slideshow-1"
+          ],
+          "settings": {}
+        },
+        "featured-content": {
+          "type": "featured-content",
+          "settings": {
+            "section_title": "",
+            "text_size": "large"
+          }
+        },
+        "featured-collections": {
+          "type": "featured-collections",
+          "blocks": {
+            "featured-collections-0": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-1": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-2": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-3": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-4": {
+              "type": "collection",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "featured-collections-0",
+            "featured-collections-1",
+            "featured-collections-2",
+            "featured-collections-3",
+            "featured-collections-4"
+          ],
+          "settings": {}
+        },
+        "featured-products": {
+          "type": "featured-products",
+          "settings": {
+            "collection_products_grid": "grid"
+          }
+        },
+        "featured-product": {
+          "type": "featured-product",
+          "settings": {}
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "slideshow",
+        "featured-content",
+        "featured-collections",
+        "featured-products",
+        "featured-product",
+        "newsletter"
+      ]
+    },
+    "Playful": {
+      "color_body_bg": "#ffffff",
+      "color_body_text": "#565656",
+      "color_borders": "#5dd2b4",
+      "color_button_text": "#ffffff",
+      "color_primary": "#7737BD",
+      "color_secondary": "#058677",
+      "color_product_background": "#fff4f6",
+      "color_sale_tag": "#e80970",
+      "color_input": "#f6f6f6",
+      "color_newsletter": "#bde9f2",
+      "color_drawer_background": "#360f5f",
+      "color_drawer_text": "#ffffff",
+      "color_drawer_border": "#50297a",
+      "color_drawer_button": "#7737BD",
+      "color_drawer_button_text": "#ffffff",
+      "color_headings": "#321863",
+      "type_header_family": "quicksand_n7",
+      "type_header_base_size": "38px",
+      "type_header_border_thickness": "1px",
+      "type_accent_family": "roboto_n7",
+      "type_accent_transform": true,
+      "type_accent_spacing": true,
+      "type_accent_subheadings": false,
+      "type_base_family": "helvetica_n4",
+      "type_base_size": "17px",
+      "type_base_italize_titles": false,
+      "cart_type": "drawer",
+      "cart_notes_enable": true,
+      "social_facebook_link": "",
+      "social_twitter_link": "",
+      "social_pinterest_link": "",
+      "social_instagram_link": "",
+      "social_snapchat_link": "",
+      "social_google_plus_link": "",
+      "social_tumblr_link": "",
+      "social_youtube_link": "",
+      "social_vimeo_link": "",
+      "social_fancy_link": "",
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "favicon": "",
+      "checkout_header_image": "",
+      "checkout_logo_image": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "small",
+      "checkout_body_background_image": "",
+      "checkout_body_background_color": "#ffffff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_image": "",
+      "checkout_sidebar_background_color": "#fff4f6",
+      "checkout_heading_font": "Helvetica Neue",
+      "checkout_body_font": "Roboto",
+      "checkout_accent_color": "#7737BD",
+      "checkout_button_color": "#7737BD",
+      "checkout_error_color": "#f01130",
+      "checkout_banner_background_color": "#fff",
+      "checkout_call_to_action_color": "#a26b25",
+      "checkout_use_header_image": false,
+      "collection_products_grid": "collage",
+      "customer_layout": "customer_area",
+      "favicon_enable": false,
+      "product_vendor_enable": false,
+      "social_sharing_style": "clean",
+      "sections": {
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "1495823280244": {
+              "type": "slide",
+              "settings": {
+                "slide_text_color": "#ffffff",
+                "slide_button_label_color": "#003B34",
+                "slide_button_background_color": "#84D1B2"
+              }
+            }
+          },
+          "block_order": [
+            "1495823280244"
+          ],
+          "settings": {
+            "hero_home_auto": false,
+            "home_hero_auto_speed": 5
+          }
+        },
+        "featured-products": {
+          "type": "featured-products",
+          "settings": {
+            "home_featured_products": "frontpage",
+            "collection_products_grid": "collage"
+          }
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
+        },
+        "header": {
+          "type": "header",
+          "settings": {
+            "logo_max_width": 260,
+            "search": "modal",
+            "main_menu_link_list": "main-menu",
+            "show_announcement": false,
+            "color_bg": "#290c49",
+            "color_text": "#ffffff"
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {
+            "footer_link_list": "footer"
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "collection_tags_enable": false,
+            "collection_products_grid": "grid",
+            "product_vendor_enable": false
+          }
+        },
+        "1494860348200": {
+          "type": "featured-row",
+          "settings": {
+            "layout": "right"
+          }
+        },
+        "1494894035034": {
+          "type": "featured-row",
+          "settings": {
+            "layout": "left"
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "product_vendor_enable": false,
+            "social_sharing_products": true,
+            "enable_image_zoom": false,
+            "enable_video_looping": false
+          }
+        },
+        "1496078102297": {
+          "type": "advanced-content",
+          "blocks": {
+            "1496078102297-0": {
+              "type": "html",
+              "settings": {
+                "code": "<div style=\"text-align:center;\">\n<h1 class=\"h1\">Use HTML to format your text so it can be easily read.<\/h1>This text can be used to share information about your brand with customers.<\/div>",
+                "width": "100%",
+                "alignment": "top-middle"
+              }
+            }
+          },
+          "block_order": [
+            "1496078102297-0"
+          ],
+          "settings": {}
+        },
+        "1496177901425": {
+          "type": "advanced-content",
+          "blocks": {
+            "1496177901425-0": {
+              "type": "html",
+              "settings": {
+                "code": "<div style=\"width:745px;text-align: center; margin: 0 auto;\">This text can be used to share information about your brand with customers.<\/div>",
+                "width": "100%",
+                "alignment": "top-middle"
+              }
+            }
+          },
+          "block_order": [
+            "1496177901425-0"
+          ],
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "slideshow",
+        "1496177901425",
+        "featured-products",
+        "newsletter",
+        "1496078102297",
+        "1494860348200",
+        "1494894035034"
+      ]
+    }
   }
 }

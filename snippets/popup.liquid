@@ -1,0 +1,33 @@
+<div id="popup-1"  class="popup-div">
+    <div id="close-popup" onclick="onCloseEvent()" class="close-btn">
+        <span class="icon icon-x" aria-hidden="true"></span></div>
+    <div class="popup-title">
+        FREE SHIPPING
+    </div>
+    <div class="popup-detail">
+        SOME COOL INFO
+    </div>
+    <div onmousedown="onActionDownEvent()" onmouseup="onActionUpEvent()" id="action-event"class="popup-action">SOME ACTION</div>
+</div>
+<script>
+    let actionEvent = document.getElementById('action-event')
+    let closeBtn = document.getElementById('close-popup')
+    let popup = document.getElementById('popup-1')
+    const onActionUpEvent=()=>{
+        actionEvent.style.opacity = 1
+    }
+    const onActionDownEvent=()=>{
+        console.log("Clicker")
+        actionEvent.style.opacity = 0.5
+    }
+    const onCloseEvent=()=>{
+
+        localStorage.setItem("seenPop", true)
+        popup.style.display = "none";
+    }
+    if(localStorage.getItem("seenPop")==="true"){
+        console.log("Previously seen")
+        popup.style.display = "none";
+    }
+    // closeBtn.addEventListener("click", onClickEvent() )
+</script>

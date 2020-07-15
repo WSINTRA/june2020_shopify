@@ -1,1 +1,24 @@
 // put your styles here
+h1 {
+    color: #dd3939;
+}
+
+//header bar should span the full screen
+.header-bar {
+    width: 100%;
+    height:3rem;
+    background-color: #a56a6a;
+}
+
+.custom-nav{
+    background-color: #a56a6a;
+}
+.popup-div{
+    display: flex;
+    width: 30rem;
+    height: 30rem;
+    background-color: #6C97B8;
+    position: absolute;
+    top:40rem;
+  }
+  

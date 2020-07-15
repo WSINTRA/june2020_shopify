@@ -1,0 +1,7 @@
+<div class="custom-nav">
+    <ul>
+        {% for link in linklists.by-category.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </ul>
+</div>

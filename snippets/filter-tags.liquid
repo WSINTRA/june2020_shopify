@@ -1,0 +1,193 @@
+<div class="custom--flex-wrap">
+     
+    <!-- start of filters with tags -->
+    
+    <div class="custom--flex-column">
+      <h6  style="font-size: x-small;">Filter Products by</h6>
+  
+      <div class="custom-filter-row custom-collapsible-menu">
+        <input onclick="doSomething('color-filter-menu')" type="checkbox" id="color-filter-menu">
+          <label for="color-filter-menu">Color <i class="fa fa-angle-down"></i></label>
+          <div class="custom-menu-content">
+          <ul class="subnav clearfix">
+            
+            {% for tag in collection.all_tags %} 
+            {% if tag contains "color-"%} 
+            {% if current_tags contains tag %}
+    
+            <li class="active">
+              {{ tag | remove: "color-" | link_to_remove_tag: tag }}
+            </li>
+            {% else %}
+            <li>
+              {{ tag | remove: "color-" | link_to_add_tag: tag }}
+            </li>
+            {% endif %} {% endif %} {% endfor %}
+          </ul>
+        </div>
+      </div>
+        
+
+      <div class="custom-filter-row custom-collapsible-menu">
+        <input onclick="doSomething('material-filter-menu')" type="checkbox" id="material-filter-menu">
+          <label for="material-filter-menu">Material <i class="fa fa-angle-down"></i></label>
+          <div class="custom-menu-content">
+          <ul class="subnav clearfix">
+            
+            {% for tag in collection.all_tags %} {% if tag contains "material-"%} {% if
+            current_tags contains tag %}
+    
+            <li class="active">
+              {{ tag | remove: "material-" | link_to_remove_tag: tag }}
+            </li>
+            {% else %}
+            <li>
+              {{ tag | remove: "material-" | link_to_add_tag: tag }}
+            </li>
+            {% endif %} {% endif %} {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="custom-filter-row custom-collapsible-menu">
+        <input onclick="doSomething('clasp-filter-menu')" type="checkbox" id="clasp-filter-menu">
+          <label for="clasp-filter-menu">Closure Type <i class="fa fa-angle-down"></i></label>
+          <div class="custom-menu-content">
+          <ul class="subnav clearfix">
+            
+            {% for tag in collection.all_tags %} {% if tag contains "clasp-"%} {% if
+            current_tags contains tag %}
+    
+            <li class="active">
+              {{ tag | remove: "clasp-" | link_to_remove_tag: tag }}
+            </li>
+            {% else %}
+            <li>
+              {{ tag | remove: "clasp-" | link_to_add_tag: tag }}
+            </li>
+            {% endif %} {% endif %} {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="custom-filter-row custom-collapsible-menu">
+        <input onclick="doSomething('penmat-filter-menu')" type="checkbox" id="penmat-filter-menu">
+          <label for="penmat-filter-menu">Pendant Material <i class="fa fa-angle-down"></i></label>
+          <div class="custom-menu-content">
+          <ul class="subnav clearfix">
+            
+            {% for tag in collection.all_tags %} {% if tag contains "pen-mat-"%} 
+            {% if current_tags contains tag %}
+            <li class="active">
+              {{ tag | remove: "pen-mat-" | link_to_remove_tag: tag }}
+            </li>
+            {% else %}
+            <li>
+              {{ tag | remove: "pen-mat-" | link_to_add_tag: tag }}
+            </li>
+            {% endif %} {% endif %} {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="custom-filter-row custom-collapsible-menu">
+        <input onclick="doSomething('category-filter-menu')" type="checkbox" id="category-filter-menu">
+          <label for="category-filter-menu">Category <i class="fa fa-angle-down"></i></label>
+          <div class="custom-menu-content">
+          <ul class="subnav clearfix">
+            
+            {% for tag in collection.all_tags %} {% if tag contains "category-"%} {% if
+            current_tags contains tag %}
+    
+            <li class="active">
+              {{ tag | remove: "category-" | link_to_remove_tag: tag }}
+            </li>
+            {% else %}
+            <li>
+              {{ tag | remove: "category-" | link_to_add_tag: tag }}
+            </li>
+            {% endif %} {% endif %} {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="custom-filter-row custom-collapsible-menu">
+        <input onclick="doSomething('size-filter-menu')" type="checkbox" id="size-filter-menu">
+          <label for="size-filter-menu">Size <i class="fa fa-angle-down"></i></label>
+          <div class="custom-menu-content">
+          <ul class="subnav clearfix">
+            
+            {% for tag in collection.all_tags %} {% if tag contains "size-"%} {% if
+            current_tags contains tag %}
+    
+            <li class="active">
+              {{ tag | remove: "size-" | link_to_remove_tag: tag }}
+            </li>
+            {% else %}
+            <li>
+              {{ tag | remove: "size-" | link_to_add_tag: tag }}
+            </li>
+            {% endif %} {% endif %} {% endfor %}
+          </ul>
+        </div>
+      </div>
+  <style>
+    /* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */
+    .clearfix:before,
+    .clearfix:after {
+      content: "";
+      display: table;
+    }
+    .clearfix:after {
+      clear: both;
+    }
+    .clearfix {
+      zoom: 1;
+    }
+    /* Subnavigation styles */
+    .subnav {
+      clear: both;
+      list-style-type: none;
+      padding: 0;
+    }
+    .subnav li {
+      display: block;
+      float: left;
+    }
+    .subnav li a {
+      display: block;
+      height: 28px;
+      line-height: 28px;
+      padding: 0 7px;
+      -webkit-border-radius: 7px;
+      -moz-border-radius: 7px;
+      border-radius: 7px;
+      background: #eee;
+      margin: 0 7px 7px 0;
+      color: #666;
+    }
+    .subnav li a:hover,
+    .subnav li.active a {
+      background: #666;
+      color: #fff;
+    }
+  </style>
+  </div>
+  <!-- end of filters with tags -->
+  <script>
+    function doSomething(id){
+      let rightArrowIcon = `<i class="fa fa-angle-right"></i>`
+      let downArrowIcon = `<i class="fa fa-angle-down"></i>`
+      let filters = document.getElementById(id)
+      let label = filters.nextElementSibling.innerHTML
+      if(label.includes(downArrowIcon)){
+        label = label.replace(downArrowIcon, rightArrowIcon)
+        filters.nextElementSibling.innerHTML = label
+      }
+      else if(label.includes(rightArrowIcon)){
+        label = label.replace(rightArrowIcon, downArrowIcon)
+        filters.nextElementSibling.innerHTML = label
+      }
+    }
+    
+  </script>

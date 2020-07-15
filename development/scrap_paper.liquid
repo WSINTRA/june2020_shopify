@@ -1,0 +1,258 @@
+    {%- if section.settings.collection_tags_enable -%}
+      {%- if collection.all_tags.size > 0 -%}
+        {%- if section.settings.collection_sort_enable -%}
+          <hr class="hr--small hr--clear">
+        {%- endif -%}
+        <ul class="tags tags--collection inline-list">
+          {% comment %}
+            Used for the catalog collection (/collections/all) and product collections (collections/{collection.handle})
+          {% endcomment %}
+          <li{% unless current_tags %} class="tag--active"{% endunless %}>
+            <a href="{% if collection.url == blank %}{{ routes.all_products_collection_url }}{% else %}{{ collection.url }}{% endif %}">
+              {{ 'collections.general.all_of_collection' | t }}
+            </a>
+          </li>
+
+          {%- for tag in collection.all_tags -%}
+            {%- if current_tags contains tag -%}
+              <li class="tag--active">
+                {{ tag | link_to_remove_tag: tag }}
+              </li>
+            {%- else -%}
+              <li>
+                {% comment %}
+                  Use link_to_add_tag if you want to allow filtering
+                  by multiple tags
+                {% endcomment %}
+                {{ tag | link_to_tag: tag }}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if section.settings.collection_tags_enable -%}
+      <hr class="hr--small hr--clear">
+    {%- endif -%}
+
+
+
+
+
+    <script>console.log({{current_tags| json}});</script>
+
+ <!-- Start of filter with dropdown -->
+ <div class="custom--side-filters">
+  <div class="custom-filter-row">
+    <div class="filter-dropdown text-center">
+  <label>Browse by closure type </label>
+  <select class="coll-filter">
+    <option value="">All</option>
+    {% for tag in collection.all_tags %} 
+    {% if tag contains "clasp-"%}
+    <option value="{{ tag | handle }}">{{ tag | remove: 'clasp-' }}</option>
+    {% endif %}
+    {% endfor %}
+  </select>
+</div>
+</div>
+
+<div class="custom-filter-row">
+<div class="filter-dropdown text-center">
+  <label>Browse by category </label>
+  <select class="coll-filter">
+    <option value="">All</option>
+    {% for tag in collection.all_tags %}
+    {% if tag contains "category-"%}
+    <option value="{{ tag | handle }}">{{ tag | remove: "category-" }}</option>
+    {% endif %} {% endfor %}
+  </select>
+</div>
+</div>
+<div class="custom-filter-row">
+<div class="filter-dropdown text-center">
+  <label>Browse by material </label>
+  <select class="coll-filter">
+    <option value="">All</option>
+    {% for tag in collection.all_tags %}
+    {% if tag contains "material-"%}
+    <option value="{{ tag | handle }}">{{ tag | remove: "material-" }}</option>
+    {% endif %} {% endfor %}
+  </select>
+</div>
+</div>
+<div class="custom-filter-row">
+<div class="filter-dropdown text-center">
+  <label>Browse by size </label>
+  <select class="coll-filter">
+    <option value="">All</option>
+    {% for tag in collection.all_tags %}
+    {% if tag contains "size-"%}
+    <option value="{{ tag | handle }}">{{ tag | remove: "size-" }}</option>
+    {% endif %} {% endfor %}
+  </select>
+</div>
+</div>
+<div class="custom-filter-row">
+<div class="filter-dropdown text-center">
+  <label>Browse by pendant material </label>
+  <select class="coll-filter">
+    <option value="">All</option>
+    {% for tag in collection.all_tags %}
+    {% if tag contains "pen-mat-"%}
+    <option value="{{ tag | handle }}">{{ tag | remove: "pen-mat-" }}</option>
+    {% endif %} {% endfor %}
+  </select>
+</div>
+</div>
+<div class="custom-filter-row">
+<div class="filter-dropdown text-center">
+  <label>Browse by color </label>
+  <select class="coll-filter">
+    <option value="">All</option>
+    {% for tag in collection.all_tags %}
+    {% if tag contains "color-"%}
+    <option value="{{ tag | handle }}">{{ tag | remove: "color-" }}</option>
+    {% endif %} {% endfor %}
+  </select>
+</div>
+</div>
+</div>
+<!-- end of filters with dropdowns -->
+
+    <!-- start of filters with tags -->
+    <ul class="subnav clearfix">
+      <p>Filter by color</p>
+      {% for tag in collection.all_tags %}
+      {% if tag contains "color-"%}
+      {% if current_tags contains tag %}
+      
+      <li class="active">
+        {{ tag | remove: "color-" | link_to_tag: tag  }}
+      </li>
+      {% else %}
+      <li>
+        {{ tag | remove: "color-" | link_to_tag: tag  }}
+      </li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul>
+    
+    <ul class="subnav clearfix">
+      <p>Filter by material</p>
+      {% for tag in collection.all_tags %}
+      {% if tag contains "material-"%}
+      {% if current_tags contains tag %}
+    
+      <li class="active">
+        {{ tag | remove: "material-"| link_to_tag: tag  }}
+      </li>
+      {% else %}
+      <li>
+        {{ tag | remove: "material-" | link_to_tag: tag  }} 
+      </li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul>
+    
+    <ul class="subnav clearfix">
+      <p>Filter by closure type</p>
+      {% for tag in collection.all_tags %}
+      {% if tag contains "clasp-"%}
+      {% if current_tags contains tag %}
+    
+      <li class="active">
+        {{ tag | remove: "clasp-"| link_to_tag: tag  }}
+      </li>
+      {% else %}
+      <li>
+        {{ tag | remove: "clasp-" | link_to_tag: tag  }} 
+      </li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul>
+    
+    <ul class="subnav clearfix">
+      <p>Filter by pendant material</p>
+      {% for tag in collection.all_tags %}
+      {% if tag contains "pen-mat-"%}
+      {% if current_tags contains tag %}
+    
+      <li class="active">
+        {{ tag | remove: "pen-mat-"| link_to_tag: tag  }}
+      </li>
+      {% else %}
+      <li>
+        {{ tag | remove: "pen-mat-" | link_to_tag: tag  }} 
+      </li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul>
+    
+    <ul class="subnav clearfix">
+      <p>Filter by category</p>
+      {% for tag in collection.all_tags %}
+      {% if tag contains "category-"%}
+      {% if current_tags contains tag %}
+    
+      <li class="active">
+        {{ tag | remove: "category-"| link_to_tag: tag  }}
+      </li>
+      {% else %}
+      <li>
+        {{ tag | remove: "category-" | link_to_tag: tag  }} 
+      </li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul>
+    
+    <ul class="subnav clearfix">
+      <p>Filter by size</p>
+      {% for tag in collection.all_tags %}
+      {% if tag contains "size-"%}
+      {% if current_tags contains tag %}
+    
+      <li class="active">
+        {{ tag | remove: "size-"| link_to_tag: tag  }}
+      </li>
+      {% else %}
+      <li>
+        {{ tag | remove: "size-" | link_to_tag: tag  }} 
+      </li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul>
+    
+    <style>
+    /* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */
+    .clearfix:before, .clearfix:after { content: ""; display: table; }
+    .clearfix:after { clear: both; }
+    .clearfix { zoom: 1; }
+    /* Subnavigation styles */
+    .subnav { clear: both; list-style-type: none; padding: 0; }
+    .subnav li { display: block; float: left; }
+    .subnav li a {
+      display: block;
+      height: 28px;
+      line-height: 28px;
+      padding: 0 7px;
+      -webkit-border-radius: 7px;
+      -moz-border-radius: 7px;
+      border-radius: 7px;
+      background: #eee;
+      margin: 0 7px 7px 0;
+      color: #666;
+    }
+    .subnav li a:hover, .subnav li.active a {
+      background: #666;
+      color: #fff;
+    }
+    </style>
+    <!-- end of filters with tags -->
