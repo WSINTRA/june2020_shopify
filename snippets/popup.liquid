@@ -7,7 +7,8 @@
     {{ settings.popup_title }}
   </div>
   <div class="popup-detail">
-    {{settings.popup_details}}
+    {{settings.popup_details}} 
+  </div>
     {% form 'customer' %}
     {{ form.errors | default_errors }}
     {% if form.posted_successfully? %}
@@ -44,7 +45,7 @@
     {% endif %}
   {% endform %}
     
-  </div>
+  
 </div>
 <script>
   let mousePosition;

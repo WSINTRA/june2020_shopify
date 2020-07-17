@@ -32,16 +32,195 @@
 
       {% if search.performed %}
       {% include 'popup' %}
-        <hr class="hr--medium hr--clear">
 
+
+<!--   -->
+<!-- start of filters with tags -->
+<div class="custom--flex-wrap">
+  <div class="custom--flex-column">
+    <h6  style="font-size: x-small;">Filter Products by</h6>
+          <div class="custom-filter-row custom-collapsible-menu">
+            <input onclick="doSomething('color-filter-menu')" type="checkbox" id="color-filter-menu">
+              <label for="color-filter-menu">Color <i class="fa fa-angle-down"></i></label>
+                <div class="custom-menu-content">
+                    <ul class="subnav clearfix" id="color">
+                    
+                    {% for product in search.results %}  
+                       {% for tag in product.tags %}
+            
+                             {% if tag contains "color-"%} 
+                
+                                  <li class="active" onclick="filterBy(event)">
+                                    {{ tag | remove: "color-" }}
+                                  </li>
+                              {% endif %} 
+                          {% endfor %}
+                  
+                      {% endfor %}
+                    
+                  </ul>
+                </div>
+           </div>
+           <div class="custom-filter-row custom-collapsible-menu">
+            <input onclick="doSomething('material-filter-menu')" type="checkbox" id="material-filter-menu">
+              <label for="material-filter-menu">Material <i class="fa fa-angle-down"></i></label>
+                <div class="custom-menu-content">
+                    <ul class="subnav clearfix" id="material">
+                    
+                    {% for product in search.results %}  
+                       {% for tag in product.tags %}
+            
+                             {% if tag contains "material-"%} 
+                
+                                  <li class="active" onclick="filterBy(event)">
+                                    {{ tag | remove: "material-"  }}
+                                  </li>
+                              {% endif %} 
+                          {% endfor %}
+                  
+                      {% endfor %}
+                    
+                  </ul>
+                </div>
+           </div>
+           <div class="custom-filter-row custom-collapsible-menu">
+            <input onclick="doSomething('clasp-filter-menu')" type="checkbox" id="clasp-filter-menu">
+              <label for="clasp-filter-menu">Closure type <i class="fa fa-angle-down"></i></label>
+                <div class="custom-menu-content">
+                    <ul class="subnav clearfix" id="clasp">
+                    
+                    {% for product in search.results %}  
+                       {% for tag in product.tags %}
+            
+                             {% if tag contains "clasp-"%} 
+                
+                                  <li class="active"  onclick="filterBy(event)">
+                                    {{ tag | remove: "clasp-" }}
+                                  </li>
+                              {% endif %} 
+                          {% endfor %}
+                  
+                      {% endfor %}
+                    
+                  </ul>
+                </div>
+           </div>
+           <div class="custom-filter-row custom-collapsible-menu">
+            <input onclick="doSomething('penmat-filter-menu')" type="checkbox" id="penmat-filter-menu">
+              <label for="penmat-filter-menu">Pendant Material <i class="fa fa-angle-down"></i></label>
+              <div class="custom-menu-content">
+              <ul class="subnav clearfix" id="pen-mat">
+                {% for product in search.results %}  
+                {% for tag in product.tags %}
+     
+                      {% if tag contains "pen-mat-"%} 
+         
+                           <li class="active"  onclick="filterBy(event)">
+                             {{ tag | remove: "pen-mat-" }}
+                           </li>
+                       {% endif %} 
+                   {% endfor %}
+           
+               {% endfor %}
+              </ul>
+            </div>
+          </div>
+    
+          <div class="custom-filter-row custom-collapsible-menu">
+            <input onclick="doSomething('category-filter-menu')" type="checkbox" id="category-filter-menu">
+              <label for="category-filter-menu">Category <i class="fa fa-angle-down"></i></label>
+              <div class="custom-menu-content">
+              <ul class="subnav clearfix" id="category">
+                {% for product in search.results %}  
+                {% for tag in product.tags %}
+     
+                      {% if tag contains "category-"%} 
+         
+                           <li class="active"  onclick="filterBy(event)">
+                             {{ tag | remove: "category-" }}
+                           </li>
+                       {% endif %} 
+                   {% endfor %}
+           
+               {% endfor %}
+              </ul>
+            </div>
+          </div>
+    
+          <div class="custom-filter-row custom-collapsible-menu">
+            <input onclick="doSomething('size-filter-menu')" type="checkbox" id="size-filter-menu">
+              <label for="size-filter-menu">Size <i class="fa fa-angle-down"></i></label>
+              <div class="custom-menu-content">
+              <ul class="subnav clearfix" id="size">
+                {% for product in search.results %}  
+                {% for tag in product.tags %}
+     
+                      {% if tag contains "size-"%} 
+         
+                           <li class="active"  onclick="filterBy()">
+                             {{ tag | remove: "size-" }}
+                           </li>
+                       {% endif %} 
+                   {% endfor %}
+           
+               {% endfor %}
+              </ul>
+            </div>
+          </div>
+<style>
+  /* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */
+  .clearfix:before,
+  .clearfix:after {
+    content: "";
+    display: table;
+  }
+  .clearfix:after {
+    clear: both;
+  }
+  .clearfix {
+    zoom: 1;
+  }
+  /* Subnavigation styles */
+  .subnav {
+    clear: both;
+    list-style-type: none;
+    padding: 0;
+  }
+  .subnav li {
+    display: block;
+    float: left;
+  }
+  .subnav li a {
+    display: block;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    background: #eee;
+    margin: 0 7px 7px 0;
+    color: #666;
+  }
+  .subnav li a:hover,
+  .subnav li.active a {
+    background: #666;
+    color: #fff;
+  }
+</style>
+</div>
+<!-- end of filters with tags -->
+
+
+      <hr class="hr--medium hr--clear">
         <div class="grid-uniform">
-          
           {% for item in search.results %}
-
             {% if item.object_type == 'product' %}
               {% assign product = item %}
-              {% include 'product-grid-item' %}
-            {% else %}
+              
+              {% include 'custom-search-filter-product' %}
+
+              {% else %}
               <div class="grid__item grid-search large--one-third medium--one-half">
                 <div class="grid-search__page">
                   <a href="{{ item.url }}" class="grid-search__page-link">
@@ -56,6 +235,7 @@
 
           {% endfor %}
         </div>
+      </div>
 
         {% if paginate.pages > 1 %}
           {% include 'pagination' %}
@@ -67,3 +247,77 @@
   </div>
 
 {% endpaginate %}
+<script>
+  let filterArray = ['color', 'material', 'clasp', 'pen-mat','category', 'size' ]
+  let scopedDiv = document.getElementsByClassName("hidden-filter")
+  let tagsFilterDiv = document.getElementsByClassName("grid-product__wrapper")
+  let customFilterRow = document.getElementsByClassName("custom-filter-row")
+  let _filterBy = "";
+  function filterBy(event){
+    event.preventDefault();
+    console.log(event,'clicked')
+    _filterBy = event.target.innerText
+    passTheFilterString(_filterBy)
+  }
+  // for(filter of customFilterRow){
+  //     console.log(filter)
+  // }
+  function passTheFilterString(string){
+    checkFilterArray(string);
+  }
+  
+  function removeDuplicates(data, key) {
+          return [
+            ...new Map(data.map(item => [key(item), item])).values()
+          ]
+        };
+
+  const checkFilterArray=(checker)=>{
+      let tagsArray = [...scopedDiv] 
+      for (let i = 0; i < tagsArray.length; i++) {
+        if(tagsArray[i].innerText.includes(checker) ){
+          console.log(tagsArray[i].parentElement)
+        }
+        //What I need to do now is when a tag is clicked, for example the blue tag..
+        //Iterate through this tagsArray and render the parents of the hidden tags that contain the blue tag
+        //Or in other words remove the products that don't contain the tag in their hidden tags
+      }
+  }
+
+  const createSingleUseTags = (filterType)=>{
+    let filterTagArray = []
+    let locationOnDom = document.getElementById(`${filterType}`)
+      for(item of locationOnDom.children){
+            if(item.localName === 'li'){
+              filterTagArray.push(item)
+            }
+         }
+    let filterTagsList = removeDuplicates(filterTagArray, item => item.innerText);
+    locationOnDom.innerHTML = ''
+    for (let i = 0; i < filterTagsList.length; i++) {
+      locationOnDom.appendChild(filterTagsList[i])  
+    }
+  }
+
+  for (let index = 0; index < filterArray.length; index++) {
+    createSingleUseTags(filterArray[index]); 
+  }
+  // checkFilterArray();
+
+
+  function doSomething(id){
+    let rightArrowIcon = `<i class="fa fa-angle-right"></i>`
+    let downArrowIcon = `<i class="fa fa-angle-down"></i>`
+    let filters = document.getElementById(id)
+    let label = filters.nextElementSibling.innerHTML
+    if(label.includes(downArrowIcon)){
+      label = label.replace(downArrowIcon, rightArrowIcon)
+      filters.nextElementSibling.innerHTML = label
+    }
+    else if(label.includes(rightArrowIcon)){
+      label = label.replace(rightArrowIcon, downArrowIcon)
+      filters.nextElementSibling.innerHTML = label
+    }
+  }          
+  
+</script>

@@ -1,5 +1,10 @@
 {
   "current": {
+    "popup_title": "FREE SHIPPING",
+    "popup_details": "Enter your email and subscribe to our newsletter for a free shipping promo",
+    "popup_button_text": "Yes Please!",
+    "popup_promo_code": "blueshipper",
+    "popup_active": true,
     "color_body_bg": "#ffffff",
     "color_headings": "#333333",
     "color_body_text": "#565656",
@@ -150,7 +155,7 @@
           "transparent_header_color": "#333333",
           "search": "modal",
           "main_menu_link_list": "main-menu",
-          "drawer_bottom_link_list": "footer",
+          "drawer_bottom_link_list": "by-category",
           "drawer_search_enable": true,
           "show_announcement": true,
           "home_page_only": true,

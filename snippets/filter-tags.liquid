@@ -55,8 +55,9 @@
           <div class="custom-menu-content">
           <ul class="subnav clearfix">
             
-            {% for tag in collection.all_tags %} {% if tag contains "clasp-"%} {% if
-            current_tags contains tag %}
+            {% for tag in collection.all_tags %} 
+            {% if tag contains "clasp-"%} 
+            {% if current_tags contains tag %}
     
             <li class="active">
               {{ tag | remove: "clasp-" | link_to_remove_tag: tag }}
