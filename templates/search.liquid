@@ -50,7 +50,7 @@
             
                              {% if tag contains "color-"%} 
                 
-                                  <li class="active" onclick="filterBy(event)">
+                                  <li class="unselect-tag" onclick="filterBy(event)">
                                     {{ tag | remove: "color-" }}
                                   </li>
                               {% endif %} 
@@ -72,7 +72,7 @@
             
                              {% if tag contains "material-"%} 
                 
-                                  <li class="active" onclick="filterBy(event)">
+                                  <li class="unselect-tag" onclick="filterBy(event)">
                                     {{ tag | remove: "material-"  }}
                                   </li>
                               {% endif %} 
@@ -94,7 +94,7 @@
             
                              {% if tag contains "clasp-"%} 
                 
-                                  <li class="active"  onclick="filterBy(event)">
+                                  <li class="unselect-tag"  onclick="filterBy(event)">
                                     {{ tag | remove: "clasp-" }}
                                   </li>
                               {% endif %} 
@@ -115,7 +115,7 @@
      
                       {% if tag contains "pen-mat-"%} 
          
-                           <li class="active"  onclick="filterBy(event)">
+                           <li class="unselect-tag"  onclick="filterBy(event)">
                              {{ tag | remove: "pen-mat-" }}
                            </li>
                        {% endif %} 
@@ -136,7 +136,7 @@
      
                       {% if tag contains "category-"%} 
          
-                           <li class="active"  onclick="filterBy(event)">
+                           <li class="unselect-tag"  onclick="filterBy(event)">
                              {{ tag | remove: "category-" }}
                            </li>
                        {% endif %} 
@@ -157,7 +157,7 @@
      
                       {% if tag contains "size-"%} 
          
-                           <li class="active"  onclick="filterBy(event)">
+                           <li class="unselect-tag"  onclick="filterBy(event)">
                              {{ tag | remove: "size-" }}
                            </li>
                        {% endif %} 
@@ -192,16 +192,6 @@
   }
   .subnav li {
     cursor: pointer;
-    display: block;
-    height: 28px;
-    line-height: 28px;
-    padding: 0 7px;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    border-radius: 7px;
-    background: #eee;
-    margin: 0 7px 7px 0;
-    color: #666;
   }
   .subnav li:hover{
     background: #666;
@@ -263,13 +253,17 @@
       _filterByArray = _filterByArray.filter(el=> el !== event.target.innerText)
       let checkedTags = checkedFilterArray(_filterByArray)
       hideTaggedElements(resultsContainer, checkedTags)
-      updateActiveFilter(activeFilterClass, [... new Set(_filterByArray) ]);
+      event.target.classList.remove("select-tag");
+      event.target.classList.add("unselect-tag");
+      // updateActiveFilter(activeFilterClass, [... new Set(_filterByArray) ]);
     }
     else{
       _filterByArray.push(event.target.innerText);
       let checkedTags = checkedFilterArray([... new Set(_filterByArray) ]) //remove duplicate tags
       hideTaggedElements(resultsContainer, checkedTags)
-      updateActiveFilter(activeFilterClass, [... new Set(_filterByArray) ]);
+      event.target.classList.remove("unselect-tag");
+      event.target.classList.add("select-tag");
+      // updateActiveFilter(activeFilterClass, [... new Set(_filterByArray) ]);
     }
   }
 //This colors selected tags
