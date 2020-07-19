@@ -157,7 +157,7 @@
      
                       {% if tag contains "size-"%} 
          
-                           <li class="active"  onclick="filterBy()">
+                           <li class="active"  onclick="filterBy(event)">
                              {{ tag | remove: "size-" }}
                            </li>
                        {% endif %} 
@@ -252,18 +252,45 @@
   let scopedDiv = document.getElementsByClassName("hidden-filter")
   let tagsFilterDiv = document.getElementsByClassName("grid-product__wrapper")
   let customFilterRow = document.getElementsByClassName("custom-filter-row")
-  let _filterBy = "";
+  let resultsContainer = document.getElementsByClassName("grid-uniform")[0]
+  let _filterByArray = [];
+  let _filterSelectionElements = [];
+  let _removeElementsList = [];
   function filterBy(event){
     event.preventDefault();
     console.log(event,'clicked')
-    _filterBy = event.target.innerText
-    passTheFilterString(_filterBy)
+    _filterByArray.push(event.target.innerText);
+    let checkedTags = passTheFilterString([... new Set(_filterByArray) ]) //remove duplicate tags
+    console.log(resultsContainer)
+    console.log(checkedTags)
+    updateDomWithNewElements(resultsContainer, checkedTags)
+    // for (let i = 0; i < resultsContainer.length; i++) { 
+    //   for (let j = 0; j < checkedTags.length; j++) { 
+    //     if(resultsContainer[i]!==checkedTags[j] ){
+    //        _removeElementsList.push(resultsContainer[i])
+    //       } 
+    //     }  
+    //   } 
+    // let removeElements =[... new Set(_removeElementsList)]
+    //Now I have a list of elements to rmeove from the resultsContainer..
+    // for (let i = 0; i < resultsContainer.length; i++) { 
+    //   for (let j = 0; j < removeElements.length; j++) { 
+    //     if(resultsContainer[i]==removeElements[j] ){
+    //         console.log("should remove --")
+    //         resultsContainer[i].remove();
+    //       } 
+    //     }  
+    //   } 
   }
-  // for(filter of customFilterRow){
-  //     console.log(filter)
-  // }
-  function passTheFilterString(string){
-    checkFilterArray(string);
+
+  function updateDomWithNewElements(container, newElements){
+    container.innerHTML = ""
+    newElements.forEach(el => {
+      container.appendChild(el)
+    })
+  }
+  function passTheFilterString(filterArray){
+    return checkedFilterArray(filterArray)
   }
   
   function removeDuplicates(data, key) {
@@ -272,16 +299,20 @@
           ]
         };
 
-  const checkFilterArray=(checker)=>{
+  const checkedFilterArray=(checker)=>{
       let tagsArray = [...scopedDiv] 
+      let selectedTags = [...checker]
       for (let i = 0; i < tagsArray.length; i++) {
-        if(tagsArray[i].innerText.includes(checker) ){
-          console.log(tagsArray[i].parentElement)
+        for (let j=0; j< selectedTags.length; j++){
+          if(tagsArray[i].innerText.includes( checker[j] ) ){
+            _filterSelectionElements.push(tagsArray[i].parentElement.parentElement)
+         }
         }
         //What I need to do now is when a tag is clicked, for example the blue tag..
         //Iterate through this tagsArray and render the parents of the hidden tags that contain the blue tag
         //Or in other words remove the products that don't contain the tag in their hidden tags
       }
+      return removeDuplicates(_filterSelectionElements, item => item.innerText);
   }
 
   const createSingleUseTags = (filterType)=>{
