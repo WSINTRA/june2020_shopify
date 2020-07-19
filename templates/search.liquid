@@ -190,7 +190,8 @@
     display: block;
     float: left;
   }
-  .subnav li a {
+  .subnav li {
+    cursor: pointer;
     display: block;
     height: 28px;
     line-height: 28px;
@@ -202,8 +203,7 @@
     margin: 0 7px 7px 0;
     color: #666;
   }
-  .subnav li a:hover,
-  .subnav li.active a {
+  .subnav li:hover{
     background: #666;
     color: #fff;
   }
@@ -249,71 +249,78 @@
 {% endpaginate %}
 <script>
   let filterArray = ['color', 'material', 'clasp', 'pen-mat','category', 'size' ]
-  let scopedDiv = document.getElementsByClassName("hidden-filter")
+  let allHiddenFilterDivs = document.getElementsByClassName("hidden-filter")
+  let activeFilterClass = document.getElementsByClassName("active")
   let tagsFilterDiv = document.getElementsByClassName("grid-product__wrapper")
   let customFilterRow = document.getElementsByClassName("custom-filter-row")
   let resultsContainer = document.getElementsByClassName("grid-uniform")[0]
-  let _filterByArray = [];
-  let _filterSelectionElements = [];
-  let _removeElementsList = [];
+  let savedResults = resultsContainer.cloneNode(true); //this is a backup of the original search results
+  let _filterByArray = []; //This array is the clicked on tags
+
   function filterBy(event){
     event.preventDefault();
-    console.log(event,'clicked')
-    _filterByArray.push(event.target.innerText);
-    let checkedTags = passTheFilterString([... new Set(_filterByArray) ]) //remove duplicate tags
-    console.log(resultsContainer)
-    console.log(checkedTags)
-    updateDomWithNewElements(resultsContainer, checkedTags)
-    // for (let i = 0; i < resultsContainer.length; i++) { 
-    //   for (let j = 0; j < checkedTags.length; j++) { 
-    //     if(resultsContainer[i]!==checkedTags[j] ){
-    //        _removeElementsList.push(resultsContainer[i])
-    //       } 
-    //     }  
-    //   } 
-    // let removeElements =[... new Set(_removeElementsList)]
-    //Now I have a list of elements to rmeove from the resultsContainer..
-    // for (let i = 0; i < resultsContainer.length; i++) { 
-    //   for (let j = 0; j < removeElements.length; j++) { 
-    //     if(resultsContainer[i]==removeElements[j] ){
-    //         console.log("should remove --")
-    //         resultsContainer[i].remove();
-    //       } 
-    //     }  
-    //   } 
+    if(_filterByArray.includes(event.target.innerText)){
+      _filterByArray = _filterByArray.filter(el=> el !== event.target.innerText)
+      let checkedTags = checkedFilterArray(_filterByArray)
+      hideTaggedElements(resultsContainer, checkedTags)
+      updateActiveFilter(activeFilterClass, [... new Set(_filterByArray) ]);
+    }
+    else{
+      _filterByArray.push(event.target.innerText);
+      let checkedTags = checkedFilterArray([... new Set(_filterByArray) ]) //remove duplicate tags
+      hideTaggedElements(resultsContainer, checkedTags)
+      updateActiveFilter(activeFilterClass, [... new Set(_filterByArray) ]);
+    }
+  }
+//This colors selected tags
+  function updateActiveFilter(tags, selectedTags){
+    console.log(tags)
+    console.log(selectedTags)
+   //work on this to make clicked on tag change color
+   
+  }
+//This finds the hidden divs attached to a product/search result and returns an array of matching products based on filterBy
+  const checkedFilterArray=(filterByArray)=>{
+      let _filterSelectionElements = []; //this array is the matching elements of clicked tags
+      let tagsArray = [...allHiddenFilterDivs] 
+      let selectedTags = [...filterByArray]
+      for (let i = 0; i < tagsArray.length; i++) {
+        for (let j=0; j< selectedTags.length; j++){
+          if(tagsArray[i].innerText.includes( selectedTags[j] ) ){
+            _filterSelectionElements.push(tagsArray[i].parentElement.parentElement)
+         }
+        }
+      }
+      return removeDuplicates(_filterSelectionElements, item => item.innerText);
   }
 
-  function updateDomWithNewElements(container, newElements){
-    container.innerHTML = ""
-    newElements.forEach(el => {
-      container.appendChild(el)
+  function hideTaggedElements(container, newElements){
+    let allResults = Array.from(container.childNodes)
+    let count = 0;
+    allResults = allResults.filter(elem=> elem.className == "grid__item grid-product large--one-third medium--one-half" )
+    allResults.forEach(elem => {
+      elem.style.display = 'none'
     })
+    allResults.forEach(element => { 
+      for(let i=0; i< newElements.length; i++){
+        if(newElements[i].innerHTML == element.innerHTML){
+          element.style.display = 'block'
+          count += 1
+      }}
+    })
+    if(count < 1){
+        allResults.forEach(elem => {
+         elem.style.display = 'block'
+        })
+      }
   }
-  function passTheFilterString(filterArray){
-    return checkedFilterArray(filterArray)
-  }
+
   
   function removeDuplicates(data, key) {
           return [
             ...new Map(data.map(item => [key(item), item])).values()
           ]
         };
-
-  const checkedFilterArray=(checker)=>{
-      let tagsArray = [...scopedDiv] 
-      let selectedTags = [...checker]
-      for (let i = 0; i < tagsArray.length; i++) {
-        for (let j=0; j< selectedTags.length; j++){
-          if(tagsArray[i].innerText.includes( checker[j] ) ){
-            _filterSelectionElements.push(tagsArray[i].parentElement.parentElement)
-         }
-        }
-        //What I need to do now is when a tag is clicked, for example the blue tag..
-        //Iterate through this tagsArray and render the parents of the hidden tags that contain the blue tag
-        //Or in other words remove the products that don't contain the tag in their hidden tags
-      }
-      return removeDuplicates(_filterSelectionElements, item => item.innerText);
-  }
 
   const createSingleUseTags = (filterType)=>{
     let filterTagArray = []
@@ -329,11 +336,11 @@
       locationOnDom.appendChild(filterTagsList[i])  
     }
   }
-
+//Creates the tags selectors in sidebar, preventing duplicates
   for (let index = 0; index < filterArray.length; index++) {
     createSingleUseTags(filterArray[index]); 
   }
-  // checkFilterArray();
+
 
 
   function doSomething(id){
