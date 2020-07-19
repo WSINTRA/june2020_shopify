@@ -40,7 +40,7 @@
   <div class="custom--flex-column">
     <h6  style="font-size: x-small;">Filter Products by</h6>
           <div class="custom-filter-row custom-collapsible-menu">
-            <input onclick="doSomething('color-filter-menu')" type="checkbox" id="color-filter-menu">
+            <input onclick="animateSideArrow('color-filter-menu')" type="checkbox" id="color-filter-menu">
               <label for="color-filter-menu">Color <i class="fa fa-angle-down"></i></label>
                 <div class="custom-menu-content">
                     <ul class="subnav clearfix" id="color">
@@ -62,7 +62,7 @@
                 </div>
            </div>
            <div class="custom-filter-row custom-collapsible-menu">
-            <input onclick="doSomething('material-filter-menu')" type="checkbox" id="material-filter-menu">
+            <input onclick="animateSideArrow('material-filter-menu')" type="checkbox" id="material-filter-menu">
               <label for="material-filter-menu">Material <i class="fa fa-angle-down"></i></label>
                 <div class="custom-menu-content">
                     <ul class="subnav clearfix" id="material">
@@ -84,7 +84,7 @@
                 </div>
            </div>
            <div class="custom-filter-row custom-collapsible-menu">
-            <input onclick="doSomething('clasp-filter-menu')" type="checkbox" id="clasp-filter-menu">
+            <input onclick="animateSideArrow('clasp-filter-menu')" type="checkbox" id="clasp-filter-menu">
               <label for="clasp-filter-menu">Closure type <i class="fa fa-angle-down"></i></label>
                 <div class="custom-menu-content">
                     <ul class="subnav clearfix" id="clasp">
@@ -106,7 +106,7 @@
                 </div>
            </div>
            <div class="custom-filter-row custom-collapsible-menu">
-            <input onclick="doSomething('penmat-filter-menu')" type="checkbox" id="penmat-filter-menu">
+            <input onclick="animateSideArrow('penmat-filter-menu')" type="checkbox" id="penmat-filter-menu">
               <label for="penmat-filter-menu">Pendant Material <i class="fa fa-angle-down"></i></label>
               <div class="custom-menu-content">
               <ul class="subnav clearfix" id="pen-mat">
@@ -127,7 +127,7 @@
           </div>
     
           <div class="custom-filter-row custom-collapsible-menu">
-            <input onclick="doSomething('category-filter-menu')" type="checkbox" id="category-filter-menu">
+            <input onclick="animateSideArrow('category-filter-menu')" type="checkbox" id="category-filter-menu">
               <label for="category-filter-menu">Category <i class="fa fa-angle-down"></i></label>
               <div class="custom-menu-content">
               <ul class="subnav clearfix" id="category">
@@ -148,7 +148,7 @@
           </div>
     
           <div class="custom-filter-row custom-collapsible-menu">
-            <input onclick="doSomething('size-filter-menu')" type="checkbox" id="size-filter-menu">
+            <input onclick="animateSideArrow('size-filter-menu')" type="checkbox" id="size-filter-menu">
               <label for="size-filter-menu">Size <i class="fa fa-angle-down"></i></label>
               <div class="custom-menu-content">
               <ul class="subnav clearfix" id="size">
@@ -240,39 +240,30 @@
 <script>
   let filterArray = ['color', 'material', 'clasp', 'pen-mat','category', 'size' ]
   let allHiddenFilterDivs = document.getElementsByClassName("hidden-filter")
-  let activeFilterClass = document.getElementsByClassName("active")
-  let tagsFilterDiv = document.getElementsByClassName("grid-product__wrapper")
-  let customFilterRow = document.getElementsByClassName("custom-filter-row")
   let resultsContainer = document.getElementsByClassName("grid-uniform")[0]
-  let savedResults = resultsContainer.cloneNode(true); //this is a backup of the original search results
   let _filterByArray = []; //This array is the clicked on tags
 
   function filterBy(event){
     event.preventDefault();
+
+    //Already selected the tag 
     if(_filterByArray.includes(event.target.innerText)){
       _filterByArray = _filterByArray.filter(el=> el !== event.target.innerText)
       let checkedTags = checkedFilterArray(_filterByArray)
       hideTaggedElements(resultsContainer, checkedTags)
       event.target.classList.remove("select-tag");
       event.target.classList.add("unselect-tag");
-      // updateActiveFilter(activeFilterClass, [... new Set(_filterByArray) ]);
     }
+    //Selected a new tag
     else{
       _filterByArray.push(event.target.innerText);
       let checkedTags = checkedFilterArray([... new Set(_filterByArray) ]) //remove duplicate tags
       hideTaggedElements(resultsContainer, checkedTags)
       event.target.classList.remove("unselect-tag");
       event.target.classList.add("select-tag");
-      // updateActiveFilter(activeFilterClass, [... new Set(_filterByArray) ]);
     }
   }
-//This colors selected tags
-  function updateActiveFilter(tags, selectedTags){
-    console.log(tags)
-    console.log(selectedTags)
-   //work on this to make clicked on tag change color
-   
-  }
+
 //This finds the hidden divs attached to a product/search result and returns an array of matching products based on filterBy
   const checkedFilterArray=(filterByArray)=>{
       let _filterSelectionElements = []; //this array is the matching elements of clicked tags
@@ -288,13 +279,16 @@
       return removeDuplicates(_filterSelectionElements, item => item.innerText);
   }
 
-  function hideTaggedElements(container, newElements){
+//Sets the divs to hidden based on the selected tags in sideBar filters
+function hideTaggedElements(container, newElements){
     let allResults = Array.from(container.childNodes)
     let count = 0;
     allResults = allResults.filter(elem=> elem.className == "grid__item grid-product large--one-third medium--one-half" )
     allResults.forEach(elem => {
       elem.style.display = 'none'
     })
+    //This could cause problems on larger datasets but should manage okay with pagination set at 12
+    //Also depends on tag sizes.. So far no problems.. If script is too slow look here for optimisation
     allResults.forEach(element => { 
       for(let i=0; i< newElements.length; i++){
         if(newElements[i].innerHTML == element.innerHTML){
@@ -309,17 +303,18 @@
       }
   }
 
-  
-  function removeDuplicates(data, key) {
+//Useful function for removing duplicated objects based on key data
+function removeDuplicates(data, key) {
           return [
             ...new Map(data.map(item => [key(item), item])).values()
           ]
         };
 
+function renderSideBarFilters(){
   const createSingleUseTags = (filterType)=>{
     let filterTagArray = []
     let locationOnDom = document.getElementById(`${filterType}`)
-      for(item of locationOnDom.children){
+    for(item of locationOnDom.children){
             if(item.localName === 'li'){
               filterTagArray.push(item)
             }
@@ -334,10 +329,9 @@
   for (let index = 0; index < filterArray.length; index++) {
     createSingleUseTags(filterArray[index]); 
   }
+}
 
-
-
-  function doSomething(id){
+  function animateSideArrow(id){
     let rightArrowIcon = `<i class="fa fa-angle-right"></i>`
     let downArrowIcon = `<i class="fa fa-angle-down"></i>`
     let filters = document.getElementById(id)
@@ -351,5 +345,7 @@
       filters.nextElementSibling.innerHTML = label
     }
   }          
-  
+
+  renderSideBarFilters();
+
 </script>
