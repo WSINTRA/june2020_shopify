@@ -203,7 +203,7 @@
 
 
       <hr class="hr--medium hr--clear">
-        <div class="grid-uniform">
+        <div id="search-results" class="grid-uniform">
           {% for item in search.results %}
             {% if item.object_type == 'product' %}
               {% assign product = item %}
@@ -240,33 +240,33 @@
 <script>
   let filterArray = ['color', 'material', 'clasp', 'pen-mat','category', 'size' ]
   let allHiddenFilterDivs = document.getElementsByClassName("hidden-filter")
-  let resultsContainer = document.getElementsByClassName("grid-uniform")[0]
+  let resultsContainer = document.getElementById("search-results");
   let _filterByArray = []; //This array is the clicked on tags
 
   function filterBy(event){
     event.preventDefault();
-
-    //Already selected the tag 
     if(_filterByArray.includes(event.target.innerText)){
+      //Already selected the tag 
       _filterByArray = _filterByArray.filter(el=> el !== event.target.innerText)
-      let checkedTags = checkedFilterArray(_filterByArray)
+      let checkedTags = filterBySelectedTags(_filterByArray)
       hideTaggedElements(resultsContainer, checkedTags)
       event.target.classList.remove("select-tag");
       event.target.classList.add("unselect-tag");
     }
-    //Selected a new tag
+   
     else{
+       //Selecting a new tag
       _filterByArray.push(event.target.innerText);
-      let checkedTags = checkedFilterArray([... new Set(_filterByArray) ]) //remove duplicate tags
-      hideTaggedElements(resultsContainer, checkedTags)
+      let checkedTags = filterBySelectedTags( _filterByArray ); 
+      hideTaggedElements(resultsContainer, checkedTags);
       event.target.classList.remove("unselect-tag");
       event.target.classList.add("select-tag");
     }
   }
 
 //This finds the hidden divs attached to a product/search result and returns an array of matching products based on filterBy
-  const checkedFilterArray=(filterByArray)=>{
-      let _filterSelectionElements = []; //this array is the matching elements of clicked tags
+  const filterBySelectedTags=(filterByArray)=>{
+      let _filterSelectionElements = []; 
       let tagsArray = [...allHiddenFilterDivs] 
       let selectedTags = [...filterByArray]
       for (let i = 0; i < tagsArray.length; i++) {
